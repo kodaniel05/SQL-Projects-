@@ -6,11 +6,7 @@ Multi-table queries and set queries
 
 */
 
-
-
 -- Question #1
-
-
 
 SELECT ip.partnumber,
 
@@ -28,16 +24,7 @@ GROUP BY ip.partnumber, ip.partdescription
 
 ORDER BY AvgQty DESC;
 
-
-
-
-
-
-
 /* Q1 Query Results
-
-
-
 PARTNUMBER PARTDESCRIPTION                                        AVGQTY
 
 ---------- -------------------------------------------------- ----------
@@ -71,16 +58,9 @@ PARTNUMBER PARTDESCRIPTION                                        AVGQTY
 ---------- -------------------------------------------------- ----------
 
 MOD-004    PCI V.90 DATA/FAX/VOICE MODEM                             1.6
-
-
-
 */
 
-
-
 -- Question #2a
-
-
 
 SELECT EXTRACT(MONTH FROM co.orderdate) AS order_month,
 
@@ -99,11 +79,6 @@ GROUP BY EXTRACT(YEAR  FROM co.orderdate),
           EXTRACT(MONTH FROM co.orderdate)
 
 ORDER BY order_year, order_month;
-
-
-
-
-
 /* Q2a Query Results
 
 
@@ -129,15 +104,7 @@ ORDER_MONTH ORDER_YEAR    AVG_QTY
           3       2011          1
 
 */
-
-
-
-
-
 -- Question #3a
-
-
-
 SELECT TO_CHAR(co.orderdate, 'MM-YYYY') AS month_year,
 
        ROUND(SUM(col.orderquantity), 1)  AS total_qty
@@ -158,17 +125,7 @@ ORDER BY EXTRACT(YEAR  FROM co.orderdate),
 
           EXTRACT(MONTH FROM co.orderdate);
 
-
-
-
-
 /* Q3 Query Results
-
-
-
-
-
-
 
 MONTH_Y  TOTAL_QTY
 
@@ -189,18 +146,9 @@ MONTH_Y  TOTAL_QTY
 02-2011         16
 
 03-2011          1
-
-
-
 */
 
-
-
-
-
 -- Question #4
-
-
 
 SELECT EXTRACT(MONTH FROM co.orderdate) AS order_month,
 
@@ -219,8 +167,6 @@ GROUP BY EXTRACT(YEAR  FROM co.orderdate),
           EXTRACT(MONTH FROM co.orderdate)
 
 ORDER BY order_year, order_month;
-
-
 
 /* Q4 Query Results
 
@@ -246,10 +192,6 @@ ORDER_MONTH ORDER_YEAR ORDERS_PLACED
 
 */
 
-
-
-
-
 /* Q5 Results
 
 
@@ -264,21 +206,8 @@ ORDER_MONTH ORDER_YEAR ORDERS_PLACED
 
 5c: If trends align, that increases confidence, contradictions decrease it.
 
-
-
-Instructor
-| 09/21 at 8:56 pm
-Grading comment:
-Does this set of data increase or decrease?
-
 */
-
-
-
 -- Question #6a
-
-
-
 SELECT sh.orderid,
 
        sh.shipmentid,
@@ -300,11 +229,7 @@ WHERE sh.orderid = '2000000007'
 ORDER BY sh.shipmentid, ps.packagenumber;
 
 
-
 /* Q6 Query Results
-
-
-
 ORDERID    SHIPMENTID PACKAGENUMBER SHIPPEDDA SHIPNAME             SHIPADDRESS                             
 
 ---------- ---------- ------------- --------- -------------------- ----------------------------------------
@@ -325,12 +250,7 @@ So overall, this order did not go out in a single shipment, but instead was spli
 
 */
 
-
-
 -- Question #7a
-
-
-
 SELECT c.custlastname || ', ' || c.custfirstname AS name,
 
        c.customerid,
@@ -345,12 +265,7 @@ WHERE c.state = 'PA' AND c.companyname IS NULL
 
 ORDER BY name, co.orderid;
 
-
-
 -- Question #7b
-
-
-
 SELECT c.custlastname || ', ' || c.custfirstname AS name,
 
        c.customerid,
@@ -364,8 +279,6 @@ RIGHT JOIN customer c ON co.customerid = c.customerid
 WHERE c.state = 'PA' AND c.companyname IS NULL
 
 ORDER BY name, co.orderid;
-
-
 
 /* 
 
@@ -406,16 +319,8 @@ Wolfe, Thomas                         I-300149   2001000736
 Wolfe, Thomas                         I-300149   2001000751
 
 Wolfe, Thomas                         I-300149   2001000768
-
-
-
 */
-
-
-
 -- Question #8
-
-
 
 SELECT ip.partnumber,
 
@@ -429,15 +334,7 @@ FULL OUTER JOIN category cat
 
 ORDER BY ip.partnumber NULLS LAST, cat.categoryname;
 
-
-
-
-
 /* Q8 Query Results
-
-
-
-
 
 PARTNUMBER CATEGORYNAME                  
 
@@ -464,9 +361,6 @@ BB-002     Basics
 BB-003     Basics                        
 
 BB-004     Basics                        
-
-
-
 PARTNUMBER CATEGORYNAME                  
 
 ---------- ------------------------------
@@ -520,8 +414,6 @@ CAB-005    Cables
 CAB-006    Cables                        
 
 CAB-007    Cables                        
-
-
 
 PARTNUMBER CATEGORYNAME                  
 
@@ -1870,13 +1762,6 @@ LEFT JOIN custorder co ON co.customerid = c.customerid
 WHERE c.state = 'PA'
 
 ORDER BY c.customerid, co.orderid;
-
-
-
-
-
-
-
 /* 
 
 
@@ -1908,9 +1793,6 @@ Mildred Jones, Computer Consultants                                            C
 Mildred Jones, Computer Consultants                                            C-300040   2001000721 03-MAR-11
 
 Mildred Jones, Computer Consultants                                            C-300040   2001000782 23-MAR-11
-
-
-
 DISPLAY_NAME                                                                   CUSTOMERID ORDERID    ORDERDATE
 
 ------------------------------------------------------------------------------ ---------- ---------- ---------
@@ -1934,8 +1816,6 @@ Thomas Wolfe, residential                                                      I
 Thomas Wolfe, residential                                                      I-300149   2001000751 13-MAR-11
 
 Thomas Wolfe, residential                                                      I-300149   2001000768 20-MAR-11
-
-
 
 21 rows selected. 
 
@@ -1994,10 +1874,6 @@ Thomas Wolfe, residential                                                      I
 Thomas Wolfe, residential                                                      I-300149   2001000751 13-MAR-11
 
 Thomas Wolfe, residential                                                      I-300149   2001000768 20-MAR-11
-
-
-
-
 
 */
 
@@ -2123,13 +1999,7 @@ COMMIT;
 
 --Part B
 
-
-
--
-
 SELECT COUNT(*) AS total_rows FROM lab2_contact;
-
-
 
 -- Uniques by column
 
@@ -2141,10 +2011,6 @@ SELECT COUNT(DISTINCT city) AS uniq_city  FROM lab2_contact;
 
 SELECT COUNT(DISTINCT state) AS uniq_state FROM lab2_contact;
 
-
-
-
-
 /*
 
 Results 
@@ -2155,29 +2021,17 @@ UNIQ_FIRST
 
         88
 
-
-
-
-
  UNIQ_LAST
 
 ----------
 
        253
 
-
-
-
-
  UNIQ_CITY
 
 ----------
 
        225
-
-
-
-
 
 
 */
