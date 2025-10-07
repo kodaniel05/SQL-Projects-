@@ -1,5 +1,4 @@
-/*
-Lab 05 PL/SQL Cursors, Exceptions
+/*PL/SQL Cursors, Exceptions
 *** ***
 */
 
